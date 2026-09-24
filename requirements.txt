@@ -1,0 +1,11 @@
+Django
+djangorestframework
+djangorestframework-simplejwt
+drf-yasg
+Pillow
+psycopg2-binary
+django-cors-headers
+django-environ
+whitenoise[brotli]
+gunicorn
+uvicorn
