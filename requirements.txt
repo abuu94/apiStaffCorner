@@ -6,6 +6,6 @@ Pillow
 psycopg2-binary
 django-cors-headers
 django-environ
-whitenoise[brotli]
+whitenoise
 gunicorn
 uvicorn
