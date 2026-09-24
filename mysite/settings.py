@@ -43,7 +43,9 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"],)
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-
+DATABASES = {
+    "default": env.db_url("DATABASE_URL"),
+}
 
 # Application definition
 
@@ -116,11 +118,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # }
 
 
-DATABASE_URL = env("DATABASE_URL")
 
-DATABASES = {
-    "default": env.db_url("DATABASE_URL"),
-}
 # DATABASES = {
 #     "default": env.db_url("DATABASE_URL") 
 # }

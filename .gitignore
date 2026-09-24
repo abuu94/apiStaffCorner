@@ -3,3 +3,4 @@ myvenv/
 .env
 oldsettings.py
 oldsettings
+oldsettings-prev.py
