@@ -1,5 +1,5 @@
 from django.db import models
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Staff(models.Model):
@@ -8,7 +8,7 @@ class Staff(models.Model):
     address = models.TextField()
     phone_number = models.CharField(max_length=15)
     payroll_number = models.CharField(max_length=50, unique=True)
-    staff_image = models.ImageField(upload_to='staff_images/', blank=True, null=True)
+    staff_image = CloudinaryField( 'staff_image',folder='staff_images', blank=True,null=True)
 
     def __str__(self):
         return f"{self.name} ({self.payroll_number})"

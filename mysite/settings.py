@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 import os
 from pathlib import Path
 import environ
+import cloudinary
 
 
 
@@ -32,7 +33,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"],)
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1","apistaffcorner.onrender.com","appstaffcorner.onrender.com"],)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
@@ -47,6 +48,14 @@ DATABASES = {
     "default": env.db_url("DATABASE_URL"),
 }
 
+# Cloudinary configuration
+
+cloudinary.config(
+    cloud_name=env("CLOUDINARY_CLOUD_NAME"),
+    api_key=env("CLOUDINARY_API_KEY"),
+    api_secret=env("CLOUDINARY_API_SECRET"),
+    secure=True,
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,9 +71,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_yasg',
     'corsheaders',
+    'cloudinary',
 
     # Local apps
     'staff',
+
 ]
 
 
@@ -198,12 +209,14 @@ CORS_ALLOWED_ORIGINS = env.list(
     default=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://appstaffcorner.onrender.com",
+        "https://apistaffcorner.onrender.com",
     ],
 )
 
 CSRF_TRUSTED_ORIGINS = env.list(
     "CSRF_TRUSTED_ORIGINS",
-    default=[],
+    default=["https://apistaffcorner.onrender.com","https://appstaffcorner.onrender.com"],
 )
 
 SECURE_PROXY_SSL_HEADER = (
@@ -228,7 +241,6 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# if not DEBUG:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
